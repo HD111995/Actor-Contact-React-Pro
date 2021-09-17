@@ -4,7 +4,9 @@ let numValue = 1 ;
 let numValue1 = -1
 class ShowContact extends React.Component {
     state = {
-        actor:[...actorData.slice(0,7)]
+        actor:[...actorData.slice(0,7)],
+        actorUserBehaivor:[...actorData.slice(0,7)],
+        name:""
     }
     //add Random Contact Function
     addRandom = () =>{
@@ -22,6 +24,7 @@ class ShowContact extends React.Component {
             else {return 0}
         }))
         this.setState({actor : tempArr})
+        this.setState({actorUserBehaivor : tempArr})
     }
     //Sort Contact by Popularity Function
     sortPop = () =>{
@@ -35,14 +38,35 @@ class ShowContact extends React.Component {
             
         }))
         this.setState({actor : tempArr})
+        this.setState({ actorUserBehaivor: tempArr})
         
     }
     //delete element Function
     del = (pop) => {
         let tempArr = this.state.actor
        let tempArr1 = tempArr.filter(elt => elt.popularity !== pop)
+                console.log(typeof tempArr1)
+                console.log(tempArr1)
                 this.setState({actor : tempArr1})
-      
+                this.setState({ actorUserBehaivor: tempArr1})
+    }
+    //serach function in Action onchange
+    search = (event) =>{
+            this.setState({name:event.target.value})
+            let temp = event.target.value
+            console.log(this.state.name)
+            
+            let tempArrgg = [...actorData.filter(elt =>  elt.name === temp )]
+            console.log(tempArrgg)
+            if (tempArrgg.length >= 1 ){
+                if (temp === tempArrgg[0].name){
+                    this.setState({actor : tempArrgg})
+                }
+            }else {
+                this.setState({ actor : this.state.actorUserBehaivor})
+            }
+           
+            
     }
     render() { 
         return (
@@ -51,6 +75,7 @@ class ShowContact extends React.Component {
             <button onClick={this.addRandom}>Add Random Contact</button>
             <button onClick={this.sortName}>Sort by Name</button>
             <button onClick={this.sortPop}>Sort by Popularity</button>
+            <input type="text" name="" placeholder="seach" onChange={this.search}></input>
             </div>
             <table>
                 <thead>

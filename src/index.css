@@ -14,10 +14,11 @@ code {
     monospace;
 }
 .butt {
-  width: 40vw;
+  width: 60vw;
   margin: 1vh auto;
   display: flex;
   justify-content: space-between;
+  border: 3px groove #fff;
 }
 table {
   width: 40vw;
@@ -43,4 +44,8 @@ button {
   font-size: 20px;
   background-color: rgb(37, 103, 129);
   color: #fff;
+}
+input {
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px #fff;
 }
